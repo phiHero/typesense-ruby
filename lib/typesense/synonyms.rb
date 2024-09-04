@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+include ERB::Util
 
 module Typesense
   class Synonyms
@@ -25,7 +26,7 @@ module Typesense
     private
 
     def endpoint_path(operation = nil)
-      "#{Collections::RESOURCE_PATH}/#{@collection_name}#{Synonyms::RESOURCE_PATH}#{operation.nil? ? '' : "/#{operation}"}"
+      "#{Collections::RESOURCE_PATH}/#{url_encode(@collection_name)}#{Synonyms::RESOURCE_PATH}#{operation.nil? ? '' : "/#{url_encode(operation)}"}"
     end
   end
 end

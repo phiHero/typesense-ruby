@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+include ERB::Util
 
 module Typesense
   class Document
@@ -23,7 +24,7 @@ module Typesense
     private
 
     def endpoint_path
-      "#{Collections::RESOURCE_PATH}/#{@collection_name}#{Documents::RESOURCE_PATH}/#{@document_id}"
+      "#{Collections::RESOURCE_PATH}/#{url_encode(@collection_name)}#{Documents::RESOURCE_PATH}/#{url_encode(@document_id)}"
     end
   end
 end

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+include ERB::Util
 
 module Typesense
   class Override
@@ -19,7 +20,7 @@ module Typesense
     private
 
     def endpoint_path
-      "#{Collections::RESOURCE_PATH}/#{@collection_name}#{Overrides::RESOURCE_PATH}/#{@override_id}"
+      "#{Collections::RESOURCE_PATH}/#{url_encode(@collection_name)}#{Overrides::RESOURCE_PATH}/#{url_encode(@override_id)}"
     end
   end
 end
